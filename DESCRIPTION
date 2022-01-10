@@ -1,0 +1,38 @@
+Package: icoscp
+Type: Package
+Title: Interface to the 'ICOS' Carbon Portal
+Version: 0.9.0
+Authors@R: c(person(
+               family = "Hufkens",
+               given = "Koen",
+               email = "koen.hufkens@gmail.com",
+               role = c("aut", "cre"),
+               comment = c(ORCID = "0000-0002-5070-8109")),
+            person(given = "BlueGreen Labs",
+              role = c("cph", "fnd"))
+           )
+Description: Provides access to the ICOS carbon portal and its services. Data
+  can be downloaded and visualized for rapid assessment and model development.
+URL: https://github.com/bluegreen-labs/icoscp
+BugReports: https://github.com/bluegreen-labs/icoscp/issues
+Depends:
+    R (>= 3.6)
+Imports:
+    SPARQL,
+    keyring,
+    memoise,
+    curl
+License: AGPL-3
+LazyData: true
+ByteCompile: true
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+Suggests:
+    rmarkdown,
+    covr,
+    testthat,
+    raster,
+    maps,
+    knitr,
+    jsonlite
+VignetteBuilder: knitr
