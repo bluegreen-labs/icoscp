@@ -3,15 +3,18 @@
 [![R-CMD-check](https://github.com/bluegreen-labs/icoscp/workflows/R-CMD-check/badge.svg)](https://github.com/bluegreen-labs/icoscp/actions)
 [![codecov](https://codecov.io/gh/bluegreen-labs/icoscp/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/icoscp)
 
-A programmatic interface to the [ICOS Carbon Portal](https://www.icos-cp.eu/). Allows for easy downloads of ICOS carbon portal data directly to your R workspace or your computer.
+A programmatic interface to the [ICOS Carbon Portal](https://www.icos-cp.eu/). 
+Allows for easy downloads of ICOS carbon portal data directly to your R 
+workspace or your computer.
 
-*This is a work in progress and should not yet be used. Keep an eye on the project for future full releases.*
+*This is a work in progress and should not yet be used.*
+*Keep an eye on the project for future full releases.*
 
 ## Installation
 
 ### stable release
 
-No CRAN releases yet
+No CRAN releases yet!
 
 ### development release
 
@@ -35,13 +38,25 @@ library("icoscp")
 
 ## Use
 
-Coming soon.
+### Listing ICOS stations
+
+The package provides easy access to data and meta-data. You can quickly list all
+the ICOS stations using the following command.
+
+``` r
+stations <- icos_stations()
+```
+
+For more examples see the package vignettes.
 
 ## Citation
 
-Hufkens K.
+Hufkens K. 2022. The 'icoscp' package: An R interface with the ICOS Carbon
+Portal data services.
 
 ## Acknowledgements
 
-This work has been supported by BlueGreen Labs and the LEMONTREE project.
+This work has been supported by [BlueGreen Labs](https://bluegreenlabs.org) 
+and the Schmidt Futures Initiative Land Ecosystem Models based On New Theory, 
+obseRvations, and ExperimEnts (LEMONTREE) project.
 

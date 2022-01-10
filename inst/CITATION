@@ -2,13 +2,13 @@ citHeader("To cite icoscp in publications use:")
 
 citEntry(
   entry    = "Misc",
-  title    = "The icoscp package: An interface with the ICOS Carbon Portal data services",
+  title    = "The icoscp package: An R interface with the ICOS Carbon Portal data services",
   author   = personList(as.person("Koen Hufkens")),
   year     = "2022",
   doi      = "",
   url      = "https://github.com/bluegreen-labs/icoscp",
   textVersion = paste(
   "Hufkens (2022).",
-  "The icoscp package: An interface with the ICOS Carbon Portal data services,",
+  "The icoscp package: An R interface with the ICOS Carbon Portal data services,",
   "v1.0.0. https://doi.org/")
 )
