@@ -14,9 +14,8 @@
 
 icos_stations <- function(station) {
 
-  # Step 1 - Set up preliminaries and define query
-  # Define the data.gov endpoint
-  endpoint <- "https://meta.icos-cp.eu/sparql"
+  # define endpoint
+  endpoint <- server()
 
   # add station filter
   if(!missing(station)){
@@ -25,6 +24,7 @@ icos_stations <- function(station) {
     flt <- ""
   }
 
+  # define query
   query <- sprintf("
             prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
             select *
@@ -41,9 +41,16 @@ icos_stations <- function(station) {
             }
             ", flt)
 
-  # retrieve data
-  df <- try(SPARQL(endpoint, query, format = "xml")$results)
+  # retrieve sparql data
+  df <- try(
+    SPARQL::SPARQL(
+        endpoint,
+        query,
+        format = "xml"
+      )$results
+    )
 
+  # check results
   if(inherits(df, "try-error") || nrow(df) == 0 ) {
     stop("No data returned, check your station name")
   }
