@@ -20,7 +20,8 @@ Depends:
 Imports:
     SPARQL,
     memoise,
-    RCurl
+    RCurl,
+    XML
 License: AGPL-3
 LazyData: true
 ByteCompile: true

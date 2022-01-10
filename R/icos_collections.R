@@ -14,7 +14,7 @@ icos_collections <- function(id) {
   endpoint <- server()
 
   # add station filter
-  if(!missing(station)){
+  if(!missing(id)){
     flt <- sprintf("FILTER(?collection = '%s' || ?doi = '%s' ) . ",id, id)
   } else {
     flt <- ""
