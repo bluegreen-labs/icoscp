@@ -1,11 +1,19 @@
 context("test icoscp queries")
 
+# RCurl (windows) settings
+options(
+  RCurlOptions =
+    list(verbose = FALSE,
+        capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"),
+        ssl.verifypeer = FALSE)
+  )
+
+# libraries (fail to dynamically load -- issue with SPARQL?)
+library(RCurl)
+library(SPARQL)
+
 test_that("station checks",{
   skip_on_cran()
-
-  # libraries (fail to dynamically load -- issue with SPARQL?)
-  library(RCurl)
-  library(SPARQL)
 
   # download the data
   expect_type(
