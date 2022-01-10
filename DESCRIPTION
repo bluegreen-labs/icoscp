@@ -16,12 +16,11 @@ Description: Provides access to the ICOS carbon portal and its services. Data
 URL: https://github.com/bluegreen-labs/icoscp
 BugReports: https://github.com/bluegreen-labs/icoscp/issues
 Depends:
-    R (>= 3.6)
+    R (>= 4.0)
 Imports:
     SPARQL,
-    keyring,
     memoise,
-    curl
+    RCurl
 License: AGPL-3
 LazyData: true
 ByteCompile: true
@@ -31,8 +30,5 @@ Suggests:
     rmarkdown,
     covr,
     testthat,
-    raster,
-    maps,
-    knitr,
-    jsonlite
+    knitr
 VignetteBuilder: knitr
