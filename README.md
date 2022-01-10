@@ -3,7 +3,7 @@
 [![R-CMD-check](https://github.com/bluegreen-labs/icoscp/workflows/R-CMD-check/badge.svg)](https://github.com/bluegreen-labs/icoscp/actions)
 [![codecov](https://codecov.io/gh/bluegreen-labs/icoscp/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/icoscp)
 
-A programmatic interface to the [ICOS Carbon Portal](https://daymet.ornl.gov). Allows for easy downloads of ICOS carbon portal data directly to your R workspace or your computer.
+A programmatic interface to the [ICOS Carbon Portal](https://www.icos-cp.eu/). Allows for easy downloads of ICOS carbon portal data directly to your R workspace or your computer.
 
 *This is a work in progress and should not yet be used. Keep an eye on the project for future full releases.*
 
