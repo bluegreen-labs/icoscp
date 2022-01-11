@@ -50,6 +50,6 @@ icos_collections <- function(id) {
   }
 
   # return results as a dataframe
-  print(df)
+  return(df)
 
 }

@@ -19,27 +19,55 @@ icos_stations <- function(station) {
 
   # add station filter
   if(!missing(station)){
-    flt <- sprintf("FILTER(?id = '%s' ) . ",station)
+    flt <- sprintf("FILTER(?stationId = '%s' ) . ",station)
   } else {
     flt <- ""
   }
 
   # define query
-  query <- sprintf("
-            prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
-            select *
-            from <http://meta.icos-cp.eu/resources/icos/>
-            from <http://meta.icos-cp.eu/resources/extrastations/>
-            where {
-            	?uri cpmeta:hasStationId ?id .
-            	%s
-            	OPTIONAL {?uri cpmeta:hasName ?name  } .
-            	OPTIONAL {?uri cpmeta:countryCode ?country }.
-            	OPTIONAL {?uri cpmeta:hasLatitude ?lat }.
-            	OPTIONAL {?uri cpmeta:hasLongitude ?lon }.
-            	OPTIONAL {?uri cpmeta:hasElevation ?elevation } .
+  # query <- sprintf("
+  #           prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
+  #           select *
+  #           from <http://meta.icos-cp.eu/resources/icos/>
+  #           from <http://meta.icos-cp.eu/resources/extrastations/>
+  #           where {
+  #           	?uri cpmeta:hasStationId ?id .
+  #           	%s
+  #           	OPTIONAL {?uri cpmeta:hasName ?name  } .
+  #           	OPTIONAL {?uri cpmeta:countryCode ?country }.
+  #           	OPTIONAL {?uri cpmeta:hasLatitude ?lat }.
+  #           	OPTIONAL {?uri cpmeta:hasLongitude ?lon }.
+  #           	OPTIONAL {?uri cpmeta:hasElevation ?elevation } .
+  #           }
+  #           ", flt)
+
+  query <- sprintf('
+            prefix st: <http://meta.icos-cp.eu/ontologies/stationentry/>
+            select distinct ?stationId ?stationName ?stationTheme
+            ?class  ?siteType
+            ?lat ?lon ?eas ?eag ?firstName ?lastName ?email ?country
+            from <http://meta.icos-cp.eu/resources/stationentry/>
+            where{
+                ?s st:hasShortName ?stationId .
+                %s
+                optional{?s st:hasLon ?lon} .
+                optional{?s st:hasLat ?lat} .
+                optional{?s st:hasElevationAboveSea ?eas} .
+                optional{?s st:hasElevationAboveGround ?eag} .
+                ?s st:hasLongName ?stationName .
+                ?s st:hasPi ?pi .
+                ?pi st:hasFirstName ?firstName .
+                ?pi st:hasLastName ?lastName .
+                ?pi st:hasEmail ?email .
+                ?s a ?stationClass .
+                ?s st:hasStationClass ?class .
+                optional{?s st:hasCountry ?country} .
+                optional{?s st:hasSiteType ?siteType} .
+
+                BIND (replace(str(?stationClass), "http://meta.icos-cp.eu/ontologies/stationentry/", "") AS ?stationTheme )
             }
-            ", flt)
+        ', flt)
+
 
   # retrieve sparql data
   df <- try(
@@ -56,6 +84,7 @@ icos_stations <- function(station) {
   }
 
   # return results as a dataframe
-  print(df)
+  return(df)
 
 }
+
