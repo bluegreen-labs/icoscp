@@ -21,7 +21,8 @@ Imports:
     SPARQL,
     memoise,
     RCurl,
-    XML
+    XML,
+    dplyr
 License: AGPL-3
 LazyData: true
 ByteCompile: true
