@@ -1,6 +1,9 @@
-#' Station data
+#' List products for a station
 #'
-#' A list of all station data types
+#' A list of all station data types including some
+#' meta-data such as the estimated size, the type of data,
+#' the time frame and the required URI for downloading
+#' the data.
 #'
 #' @param uri url pointing to a resource
 #' @param level data quality level (default = 2)
@@ -10,32 +13,35 @@
 #'
 #' @examples
 #' \dontrun{
-#' all_station_info <- icos_stations_data()
+#' products <- icos_products()
 #' }
 
-icos_station_data <- function(
-  uri,
-  level = 2
-  ) {
+icos_products <- memoise::memoise(
+  function(
+    uri,
+    level = 2
+    ) {
 
-  # https://github.com/ICOS-Carbon-Portal/pylib/blob/master/icoscp/sparql/sparqls.py
+  if (missing(uri)){
+    message("No URI provided, returning NULL")
+    return(NULL)
+  }
 
   # define endpoint
   endpoint <- server()
 
+  # set level strings
   if (tolower(level) == "all") {
     level <- ">0"
   } else if (level %in% c(1,2,3)) {
-    level <- paste("=", level)
+    level <- paste("=", tolower(level))
   } else {
-    stop("Please check your specified data level!")
+    message("Please check your specified data level!")
+    return(NULL)
   }
 
   # format uri string
-  uristr <- sprintf("<> <%s>", paste(uri, collapse = ""))
-
-  print(level)
-  print(uristr)
+  uristr <- sprintf("<%s>", paste(uri, collapse = " "))
 
   # format query
   query <- sprintf('
@@ -69,9 +75,10 @@ icos_station_data <- function(
 
   # check results
   if( inherits(df, "try-error") || nrow(df) == 0 ) {
-    stop("No data returned, check your station name")
+    message("No data returned, check your station name")
+    return(NULL)
   }
 
   # return results as a dataframe
   return(df)
-}
+})

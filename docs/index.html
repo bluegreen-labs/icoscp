@@ -89,15 +89,16 @@
 <a href="#icoscp-" class="anchor"></a>icoscp <a href="https://bluegreen-labs.github.io/icoscp/"><img src="https://raw.githubusercontent.com/bluegreen-labs/icoscp/master/logo.png" align="right" height="139"></a>
 </h1></div>
 
-<p>A programmatic interface to the <a href="https://www.icos-cp.eu/">ICOS Carbon Portal</a>. Allows for easy downloads of ICOS carbon portal data directly to your R workspace or your computer.</p>
-<p><em>This is a work in progress and should not yet be used.</em> <em>Keep an eye on the project for future full releases.</em></p>
+<p>A programmatic interface to the Integrated Carbon Observation System (ICOS) <a href="https://www.icos-cp.eu/">Carbon Portal</a>. Allows for easy downloads of ICOS carbon portal data directly to your R work space or your computer.</p>
+<p>This package is a partial port of the <a href="https://github.com/ICOS-Carbon-Portal/pylib"><code>icoscp</code> python package</a>, retaining for now the functions relating to downloading site meta-data, available data and the eventual downloading of the data. Unlike the icoscp pacakge the subsetting of the data products or collections should be done by the user.</p>
+<p>Further differences pertain to the downloaded data, which can not be directly inspected and is often downloaded as a (zipped) binary. These files can be easily unzipped using conventional or internal <code>R</code> tools.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div id="stable-release" class="section level3">
 <h3 class="hasAnchor">
 <a href="#stable-release" class="anchor"></a>stable release</h3>
-<p>No CRAN releases yet!</p>
+<p>No CRAN releases yet - should be there soonish!</p>
 </div>
 <div id="development-release" class="section level3">
 <h3 class="hasAnchor">
@@ -123,6 +124,13 @@
 <p>The package provides easy access to data and meta-data. You can quickly list all the ICOS stations using the following command.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/icos_stations.html">icos_stations</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="listing-icos-collections" class="section level3">
+<h3 class="hasAnchor">
+<a href="#listing-icos-collections" class="anchor"></a>Listing ICOS collections</h3>
+<p>The package provides easy access to data and meta-data. You can quickly list all the ICOS stations using the following command.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">collections</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/icos_collections.html">icos_collections</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>For more examples see the package vignettes.</p>
 </div>
 </div>

@@ -1,14 +1,20 @@
 #' ICOS collections
 #'
 #' Returns icon collections. By default all collections are returned, if an id
-#' is given only collection information for this partuicular DOI is provided.
+#' is given only collection information for this particular DOI is provided.
 #'
-#' @param id an URI or DOI, default (missing)
+#' @param id an URI or PID default (missing)
 #'
 #' @return all ICOS collections (or a desired subset)
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' print(icos_collections())
+#' }
 
-icos_collections <- function(id) {
+icos_collections <- memoise::memoise(
+  function(id) {
 
   # define endpoint
   endpoint <- server()
@@ -46,10 +52,10 @@ icos_collections <- function(id) {
 
   # check results
   if(inherits(df, "try-error") || nrow(df) == 0 ) {
-    stop("No data returned, check your id name")
+    message("No data returned, returning NULL")
+    return(NULL)
   }
 
   # return results as a dataframe
   return(df)
-
-}
+})

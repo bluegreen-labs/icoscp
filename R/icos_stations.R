@@ -1,15 +1,18 @@
-#' List all ICOS station info
+#' List all ICOS collections
 #'
-#' A list of all station meta-data such as latittude, longitude and elevation
+#' A list of all ICOS collections. Collections are aggregate products, you
+#' will find additional identifying DOIs for proper referencing and further
+#' exploration in the returned table.
 #'
 #' @param station station id to subset from larger list (default missing)
 #'
-#' @return a list of station meta-data
+#' @return a data frame with ICOS collections
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' all_station_info <- icos_stations()
+#' station_info <- icos_stations()
+#' print(station_info)
 #' }
 
 icos_stations <- function(
@@ -74,6 +77,10 @@ icos_stations <- function(
 
   # retrieve sparql data
   # for well documented icos sites
+  # from the python implementation
+  # it seems that this will be the final table
+  # the full table listed below will not be
+  # required in the end (or vise versa)
   icos_df <- try(
     SPARQL::SPARQL(
         endpoint,
@@ -93,38 +100,50 @@ icos_stations <- function(
   )
 
   # check results
-  if(inherits(icos_df, "try-error") || nrow(icos_df) == 0 ) {
-    stop("No data returned, check your station name")
+  if(inherits(full_df, "try-error") || nrow(full_df) == 0 ) {
+    message("Station not found, check your station name")
+    return(NULL)
+  } else {
+    # reformat the uri
+    full_df$uri <- gsub("<||>","", full_df$uri)
   }
 
   # check results
-  if(inherits(full_df, "try-error") || nrow(full_df) == 0 ) {
-    stop("No data returned, check your station name")
+  if(inherits(icos_df, "try-error") || nrow(icos_df) == 0 ) {
+    message("
+      No ICOS data returned, returning limited meta-data for
+      requested site.
+      ")
+    # return
+    df <- full_df
+  } else {
+    # rename columns
+    icos_df <- dplyr::rename(icos_df,
+                             'id' = 'stationId',
+                             'name' = 'stationName',
+                             'theme' = 'stationTheme',
+                             'type' = 'siteType',
+                             'first_name' = 'firstName',
+                             'last_name' = 'lastName'
+    ) |>
+      dplyr::select(
+        -"lat",
+        -"lon",
+        -"country"
+      )
+
+    # Certain columns are dropped due to duplicate use and above all
+    # inconsistent values between what should be equivalent tables
+    # not sure why, also not my problem. For convenience the values
+    # are dropped from the ICOS table (as this is a subset of the
+    # full site list)
+
+    # join both the full data and the ICOS fully annotated meta-data
+    # tables
+    df <- dplyr::left_join(full_df, icos_df, by = c('id','name'))
   }
 
-  # rename columns
-  icos_df <- dplyr::rename(icos_df,
-      'id' = 'stationId',
-      'name' = 'stationName',
-      'theme' = 'stationTheme',
-      'type' = 'siteType',
-      'first_name' = 'firstName',
-      'last_name' = 'lastName'
-    ) |>
-    dplyr::select(
-      -lat,
-      -lon,
-      -country
-    )
-
-  # reformat the uri
-  full_df$uri <- gsub("<||>","", full_df$uri)
-
-  # join the data
-  df <- dplyr::left_join(full_df, icos_df, by = c('id','name'))
-
-  # return results as a dataframe
+  # return results as a data frame
   return(df)
-
 }
 

@@ -19,14 +19,15 @@ Depends:
     R (>= 4.0)
 Imports:
     SPARQL,
-    memoise,
     RCurl,
     XML,
+    httr,
+    memoise,
     dplyr
 License: AGPL-3
 LazyData: true
 ByteCompile: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8
 Suggests:
     rmarkdown,

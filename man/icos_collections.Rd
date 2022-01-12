@@ -16,3 +16,8 @@ all ICOS collections (or a desired subset)
 Returns icon collections. By default all collections are returned, if an id
 is given only collection information for this partuicular DOI is provided.
 }
+\examples{
+\dontrun{
+print(icos_collections())
+}
+}

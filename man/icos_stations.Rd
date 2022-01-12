@@ -2,7 +2,7 @@
 % Please edit documentation in R/icos_stations.R
 \name{icos_stations}
 \alias{icos_stations}
-\title{List all ICOS station info}
+\title{List all ICOS collections}
 \usage{
 icos_stations(station)
 }
@@ -10,13 +10,16 @@ icos_stations(station)
 \item{station}{station id to subset from larger list (default missing)}
 }
 \value{
-a list of station meta-data
+a data frame with ICOS collections
 }
 \description{
-A list of all station meta-data such as latittude, longitude and elevation
+A list of all ICOS collections. Collections are aggregate products, you
+will find additional identifying DOIs for proper referencing and further
+exploration in the returned table.
 }
 \examples{
 \dontrun{
-all_station_info <- icos_stations()
+station_info <- icos_stations()
+print(station_info)
 }
 }
