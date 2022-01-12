@@ -102,7 +102,7 @@ icos_stations <- function(
     stop("No data returned, check your station name")
   }
 
-  # merge two datasets by station id
+  # rename columns
   icos_df <- dplyr::rename(icos_df,
       'id' = 'stationId',
       'name' = 'stationName',
@@ -116,6 +116,9 @@ icos_stations <- function(
       -lon,
       -country
     )
+
+  # reformat the uri
+  full_df$uri <- gsub("<||>","", full_df$uri)
 
   # join the data
   df <- dplyr::left_join(full_df, icos_df, by = c('id','name'))
