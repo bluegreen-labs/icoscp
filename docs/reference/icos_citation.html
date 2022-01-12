@@ -136,14 +136,18 @@ the CrossRef server if it exists. Both this internal ICOS citation
 as well as the common 'academic' citation is provided if available.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>icos_citation</span><span class='op'>(</span><span class='va'>dobj</span>, style <span class='op'>=</span> <span class='st'>"apa"</span>, lang <span class='op'>=</span> <span class='st'>"en-GB"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>icos_citation</span><span class='op'>(</span><span class='va'>dobj</span>, <span class='va'>doi</span>, style <span class='op'>=</span> <span class='st'>"apa"</span>, lang <span class='op'>=</span> <span class='st'>"en-GB"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dobj</th>
-      <td><p>a digital object URI or PID</p></td>
+      <td><p>a digital object URI or PID (persistent identifier)</p></td>
+    </tr>
+    <tr>
+      <th>doi</th>
+      <td><p>doi of a manuscript or document (as listed by icos_collections())</p></td>
     </tr>
     <tr>
       <th>style</th>

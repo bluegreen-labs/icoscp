@@ -7,14 +7,14 @@
 icos_collections(id)
 }
 \arguments{
-\item{id}{an URI or DOI, default (missing)}
+\item{id}{an URI or PID default (missing)}
 }
 \value{
 all ICOS collections (or a desired subset)
 }
 \description{
 Returns icon collections. By default all collections are returned, if an id
-is given only collection information for this partuicular DOI is provided.
+is given only collection information for this particular DOI is provided.
 }
 \examples{
 \dontrun{

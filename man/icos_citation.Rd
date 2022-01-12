@@ -4,10 +4,12 @@
 \alias{icos_citation}
 \title{Get a digital object's citation}
 \usage{
-icos_citation(dobj, style = "apa", lang = "en-GB")
+icos_citation(dobj, doi, style = "apa", lang = "en-GB")
 }
 \arguments{
-\item{dobj}{a digital object URI or PID}
+\item{dobj}{a digital object URI or PID (persistent identifier)}
+
+\item{doi}{doi of a manuscript or document (as listed by icos_collections())}
 
 \item{style}{the sitation style (default = 'apa')}
 

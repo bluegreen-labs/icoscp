@@ -95,12 +95,17 @@ test_that("product checks",{
 test_that("citation checks",{
   skip_on_cran()
 
-
   dobj <- "https://meta.icos-cp.eu/objects/lNJPHqvsMuTAh-3DOvJejgYc"
 
   # download the data
   expect_type(
     icos_citation(dobj = dobj),
+    "list"
+  )
+
+  # download the data
+  expect_type(
+    icos_citation(doi = "10.18160/CS8J-MF3U"),
     "list"
   )
 
@@ -110,5 +115,25 @@ test_that("citation checks",{
   )
 
 })
+
+test_that("download checks",{
+  skip_on_cran()
+
+  dobj <- "https://meta.icos-cp.eu/objects/lNJPHqvsMuTAh-3DOvJejgYc"
+
+  # download the data
+  expect_message(
+    icos_download(dobj = dobj, verbose = FALSE)
+  )
+
+  # no dobj
+  expect_null(
+    icos_download()
+  )
+
+})
+
+
+
 
 
