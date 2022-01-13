@@ -30,7 +30,7 @@ icos_citation <- memoise::memoise(
   # catch errors in parameters
   if (missing(dobj) && missing(doi)) {
     message("Missing digital object (dobj) reference, returning NULL")
-    return(NULL)
+    return(invisible(NULL))
   } else if (!missing(dobj)) {
       # define endpoint
       endpoint <- server()

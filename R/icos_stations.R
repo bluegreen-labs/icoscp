@@ -102,7 +102,7 @@ icos_stations <- function(
   # check results
   if(inherits(full_df, "try-error") || nrow(full_df) == 0 ) {
     message("Station not found, check your station name")
-    return(NULL)
+    return(invisible(NULL))
   } else {
     # reformat the uri
     full_df$uri <- gsub("<||>","", full_df$uri)

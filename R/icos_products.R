@@ -24,7 +24,7 @@ icos_products <- memoise::memoise(
 
   if (missing(uri)){
     message("No URI provided, returning NULL")
-    return(NULL)
+    return(invisible(NULL))
   }
 
   # define endpoint
@@ -37,7 +37,7 @@ icos_products <- memoise::memoise(
     level <- paste("=", tolower(level))
   } else {
     message("Please check your specified data level!")
-    return(NULL)
+    return(invisible(NULL))
   }
 
   # format uri string
@@ -76,7 +76,7 @@ icos_products <- memoise::memoise(
   # check results
   if( inherits(df, "try-error") || nrow(df) == 0 ) {
     message("No data returned, check your station name")
-    return(NULL)
+    return(invisible(NULL))
   }
 
   # return results as a dataframe

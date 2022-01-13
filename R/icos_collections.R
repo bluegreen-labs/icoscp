@@ -53,7 +53,7 @@ icos_collections <- memoise::memoise(
   # check results
   if(inherits(df, "try-error") || nrow(df) == 0 ) {
     message("No data returned, returning NULL")
-    return(NULL)
+    return(invisible(NULL))
   }
 
   # return results as a dataframe
