@@ -23,6 +23,7 @@ Imports:
     XML,
     httr,
     memoise,
+    magrittr,
     dplyr
 License: AGPL-3
 LazyData: true

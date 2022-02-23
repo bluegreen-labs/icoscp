@@ -6,6 +6,7 @@
 #'
 #' @param station station id to subset from larger list (default missing)
 #'
+#' @importFrom magrittr "%>%"
 #' @return a data frame with ICOS collections
 #' @export
 #'
@@ -125,7 +126,7 @@ icos_stations <- function(
                              'type' = 'siteType',
                              'first_name' = 'firstName',
                              'last_name' = 'lastName'
-    ) |>
+    ) %>%
       dplyr::select(
         -"lat",
         -"lon",
