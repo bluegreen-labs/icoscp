@@ -10,7 +10,6 @@ options(
 
 # libraries (fail to dynamically load -- issue with SPARQL?)
 library(RCurl)
-library(SPARQL)
 
 test_that("station checks",{
   skip_on_cran()

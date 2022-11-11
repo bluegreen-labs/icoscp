@@ -9,7 +9,7 @@
 #'  the license agreement for a download - setting this to FALSE overrides
 #'  this but by doing so you acknowledge the statement in bulk!
 #' @param path where to save the downloaded data (default = tempdir())
-#'
+#' @importFrom memoise memoise
 #' @return a downloaded digital file on disk for further processing
 #' @export
 #'

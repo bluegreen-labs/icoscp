@@ -7,7 +7,7 @@
 #'
 #' @param uri url pointing to a resource
 #' @param level data quality level (default = 2)
-#'
+#' @importFrom memoise memoise
 #' @return a list of station meta-data
 #' @export
 #'
@@ -66,7 +66,7 @@ icos_products <- memoise::memoise(
 
   # retrieve sparql data
   df <- try(
-    SPARQL::SPARQL(
+    SPARQL(
       endpoint,
       query,
       format = "xml"

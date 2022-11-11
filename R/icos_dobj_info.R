@@ -3,6 +3,7 @@
 #' Get additional information on a digital object.
 #'
 #' @param dobj digital object URI or PID
+#' @importFrom memoise memoise
 #'
 #' @return a data frame with digital object information
 #' @export
@@ -45,7 +46,7 @@ icos_dobj_info <- memoise::memoise(
 
     # runs sparql query
     df <- try(
-      SPARQL::SPARQL(
+      SPARQL(
         endpoint,
         query,
         format = "xml"

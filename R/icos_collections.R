@@ -4,6 +4,7 @@
 #' is given only collection information for this particular DOI is provided.
 #'
 #' @param id an URI or PID default (missing)
+#' @importFrom memoise memoise
 #'
 #' @return all ICOS collections (or a desired subset)
 #' @export
@@ -43,7 +44,7 @@ icos_collections <- memoise::memoise(
 
   # retrieve sparql data
   df <- try(
-    SPARQL::SPARQL(
+    SPARQL(
       endpoint,
       query,
       format = "xml"

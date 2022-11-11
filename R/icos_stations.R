@@ -6,7 +6,6 @@
 #'
 #' @param station station id to subset from larger list (default missing)
 #'
-#' @importFrom magrittr "%>%"
 #' @return a data frame with ICOS collections
 #' @export
 #'
@@ -83,7 +82,7 @@ icos_stations <- function(
   # the full table listed below will not be
   # required in the end (or vise versa)
   icos_df <- try(
-    SPARQL::SPARQL(
+    SPARQL(
         endpoint,
         icos_query,
         format = "xml"
@@ -93,7 +92,7 @@ icos_stations <- function(
   # retrieve sparql data
   # for all sites (regardless of meta-data quality)
   full_df <- try(
-    SPARQL::SPARQL(
+    SPARQL(
       endpoint,
       full_query,
       format = "xml"
@@ -126,7 +125,7 @@ icos_stations <- function(
                              'type' = 'siteType',
                              'first_name' = 'firstName',
                              'last_name' = 'lastName'
-    ) %>%
+    ) |>
       dplyr::select(
         -"lat",
         -"lon",

@@ -8,7 +8,7 @@
 #' @param doi doi of a manuscript or document (as listed by icos_collections())
 #' @param style the sitation style (default = 'apa')
 #' @param lang the language of the common citation (default = 'en-GB')
-#'
+#' @importFrom memoise memoise
 #' @return a dataframe with an icos and common citation to be used in
 #'  publications when using the referenced digital object
 #' @export
@@ -50,7 +50,7 @@ icos_citation <- memoise::memoise(
 
       # retrieve sparql data
       icos_citation <- try(
-        SPARQL::SPARQL(
+        SPARQL(
           endpoint,
           query,
           format = "xml"
