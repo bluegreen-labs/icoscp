@@ -134,11 +134,12 @@ get_attr <- function(attrs, DOM, ns) {
            function(r) {
              sapply(attrs,
                     function(attr) {
-                      get_value(XML::getNodeSet(XML::xmlDoc(r),
-                                           paste('//s:binding[@name="',attr,'"]/*[1]',
-                                                 sep=''),
-                                           namespaces=sparqlns)[[1]],
-                                ns)
+                      node <- XML::getNodeSet(XML::xmlDoc(r),paste('//s:binding[@name="',attr,'"]/*[1]',sep=''),namespaces=sparqlns)
+                      if(length(node)>0) {
+                       return(get_value(node[[1]],ns))
+                      } else {
+                       return(NA)
+                      }
                     },simplify=FALSE)
            },simplify=TRUE))
 }
